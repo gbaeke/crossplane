@@ -10,7 +10,5 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: akv2k8s
-  install:
-    createNamespace: true
   interval: 1m0s
   targetNamespace: akv2k8s
