@@ -46,7 +46,8 @@ az k8s-configuration flux create -g $RG -c $CLUSTER \
   --branch main  \
   --https-user $USER --https-key $PAT \
   --kustomization name=infra path=./infra prune=true \
-  --kustomization name=secrets path=./secrets prune=true dependsOn=["infra"]
+  --kustomization name=secrets path=./secrets prune=true dependsOn=["infra"] \
+  --kustomization name=apps path=./crossplane-apps prune=true dependsOn=["secrets"]
 ```
 
 ## Setup Azure Provider
