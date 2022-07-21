@@ -46,7 +46,17 @@ az k8s-configuration flux create -g $RG -c $CLUSTER \
   --branch main  \
   --https-user $USER --https-key $PAT \
   --kustomization name=infra path=./infra prune=true \
-  
+  --kustomization name=secrets path=./secrets prune=true dependsOn=["infra"]
+```
 
+## Setup Azure Provider
+
+These are the manual steps. The Azure Key Vault to Kubernetes controller and secret sync from Key Vault via the secrets kustomization should take care of this.
 
 ```
+az ad sp create-for-rbac --sdk-auth --role Owner > "creds.json"
+kubectl create secret generic azure-creds -n crossplane-system --from-file=creds=./creds.json
+```
+
+
+
