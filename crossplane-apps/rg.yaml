@@ -5,4 +5,4 @@ metadata:
 spec:
   location: westeurope
   providerConfigRef:
-    name: rg-crossplane
+    name: default
