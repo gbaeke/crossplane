@@ -11,7 +11,5 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: crossplane
-  install:
-    createNamespace: true
   interval: 1m0s
   targetNamespace: crossplane-system
