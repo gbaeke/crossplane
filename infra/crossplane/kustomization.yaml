@@ -1,3 +1,5 @@
 resources:
 - hc-crossplane.yaml
 - hr-crossplane.yaml
+
+namespace: config-infra

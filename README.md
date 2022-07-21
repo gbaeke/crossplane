@@ -30,5 +30,5 @@ You can use the portal to add a GitOps configuration:
 - add the repo with username and PAT as password
 - create a kustomization that uses the infra folder
 
-
+When you do this via the portal, Flux will be installed on the cluster automatically.
 
