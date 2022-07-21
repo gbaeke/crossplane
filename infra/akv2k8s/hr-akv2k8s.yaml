@@ -13,4 +13,4 @@ spec:
   install:
     createNamespace: true
   interval: 1m0s
-  targetNamespace: akv2k8s
+  targetNamespace: akv2k8s-system
