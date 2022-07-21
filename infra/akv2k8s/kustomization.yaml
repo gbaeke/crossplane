@@ -1,3 +1,4 @@
 resources:
+- namespace.yaml
 - hc-akv2k8s.yaml
 - hr-akv2k8s.yaml
