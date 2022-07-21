@@ -1,7 +1,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: akv2aks
+  name: akv2k8s
 spec:
   chart:
     spec:
