@@ -32,3 +32,21 @@ You can use the portal to add a GitOps configuration:
 
 When you do this via the portal, Flux will be installed on the cluster automatically.
 
+From the command line:
+
+```
+RG=rg-aks
+CLUSTER=clu-crossplane
+USER=gbaeke
+PAT=<PAT>
+
+az k8s-configuration flux create -g $RG -c $CLUSTER \
+  -n cluster-config --namespace config-infra -t managedClusters \
+  --scope cluster -u https://github.com/gbaeke/crossplane \
+  --branch main  \
+  --https-user $USER --https-key $PAT \
+  --kustomization name=infra path=./infra prune=true \
+  
+
+
+```
