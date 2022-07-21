@@ -1,3 +1,4 @@
 resources:
+- namespace.yaml
 - hc-crossplane.yaml
 - hr-crossplane.yaml
