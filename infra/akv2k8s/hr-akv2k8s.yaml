@@ -1,0 +1,16 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: akv2aks
+spec:
+  chart:
+    spec:
+      chart: akv2k8s
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: akv2k8s
+  install:
+    createNamespace: true
+  interval: 1m0s
+  targetNamespace: akv2k8s

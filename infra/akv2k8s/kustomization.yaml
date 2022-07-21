@@ -1,0 +1,3 @@
+resources:
+- hc-akv2aks.yaml
+- hr-akv2aks.yaml
