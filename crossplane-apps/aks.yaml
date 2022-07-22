@@ -1,0 +1,51 @@
+apiVersion: network.azure.crossplane.io/v1alpha3
+kind: VirtualNetwork
+metadata:
+  name: vnet-cp
+spec:
+  resourceGroupNameRef:
+    name: rg-crossplane
+  location: westeurope
+  properties:
+    addressSpace:
+      addressPrefixes:
+        - 10.2.0.0/16
+  providerConfigRef:
+    name: default
+---
+apiVersion: network.azure.crossplane.io/v1alpha3
+kind: Subnet
+metadata:
+  name: sn-aks
+spec:
+  resourceGroupNameRef:
+    name: rg-crossplane
+  virtualNetworkNameRef:
+    name: vnet-cp
+  properties:
+    addressPrefix: 10.2.1.0/24
+  providerConfigRef:
+    name: default
+---
+apiVersion: compute.azure.crossplane.io/v1alpha3
+kind: AKSCluster
+metadata:
+  name: clu-cpapps
+  labels:
+    environment: "dev"
+spec:
+  resourceGroupNameRef:
+    name: rg-crossplane
+  vnetSubnetIDRef:
+    name: sn-aks
+  location: westeurope
+  version: "1.22.11"
+  nodeCount: 1
+  nodeVMSize: Standard_B2s
+  dnsNamePrefix: clu-cpapps
+  disableRBAC: false
+  providerConfigRef:
+    name: default
+  writeConnectionSecretToRef:
+    namespace: crossplane-system
+    name: clu-cpapps
