@@ -1,0 +1,11 @@
+apiVersion: azure.jet.crossplane.io/v1alpha2
+kind: ResourceGroup
+metadata:
+  name: rg-crossplane
+spec:
+  forProvider:
+    location: "westeurope"
+    tags:
+      provisioner: crossplane
+  providerConfigRef:
+    name: default
