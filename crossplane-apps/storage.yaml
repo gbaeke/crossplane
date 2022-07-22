@@ -1,0 +1,32 @@
+apiVersion: storage.azure.jet.crossplane.io/v1alpha2
+kind: Account
+metadata:
+  name: gebacpstorage
+  annotations:
+    crossplane.io/external-name: gebacpstorage
+spec:
+  forProvider:
+    resourceGroupNameRef:
+      name: rg-crossplane
+    location: "westeurope"
+    accountTier: "Standard"
+    accountReplicationType: "LRS"
+    tags:
+      environment: dev
+  providerConfigRef:
+    name: default
+  writeConnectionSecretToRef:
+    name: gebacpstorage
+    namespace: crossplane-system
+---
+apiVersion: storage.azure.jet.crossplane.io/v1alpha2
+kind: Container
+metadata:
+  name: mycontainer
+spec:
+  forProvider:
+    containerAccessType: private
+    storageAccountNameRef:
+      name: gebacpstorage
+  providerConfigRef:
+    name: default
