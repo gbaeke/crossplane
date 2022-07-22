@@ -1,7 +1,7 @@
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
-  name: default
+  name: jet
   namespace: crossplane-system
 spec:
-  package: crossplane/provider-azure:v0.19.0
+  package: provider-jet-azure@v0.7.0-preview
