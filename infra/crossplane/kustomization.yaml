@@ -1,5 +1,5 @@
 resources:
 - namespace.yaml
-- provider.yaml
+- jet-provider.yaml
 - hc-crossplane.yaml
 - hr-crossplane.yaml
