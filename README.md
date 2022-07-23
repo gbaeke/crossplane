@@ -14,21 +14,24 @@ Create the Helm repository with:
 flux create source helm crossplane --url https://charts.crossplane.io/stable --export
 ```
 
-Create the HelmRelease with:
+Create the HelmRelease and export it.
 
 ```
 flux create hr crossplane \
     --target-namespace=crossplane-system \
     --create-target-namespace=true \
     --source=HelmRepository/crossplane \
-    --chart=crossplane
+    --chart=crossplane --export
 ```
 
-Create the Flux Config
+The result was added to the repo with some changes.
+
+## Create the Flux Config
 
 You can use the portal to add a GitOps configuration:
-- add the repo with username and PAT as password
+- add the repo with username and PAT as password (if private)
 - create a kustomization that uses the infra folder
+- add extra kustomizations if needed
 
 When you do this via the portal, Flux will be installed on the cluster automatically.
 
@@ -49,6 +52,14 @@ az k8s-configuration flux create -g $RG -c $CLUSTER \
   --kustomization name=secrets path=./secrets prune=true dependsOn=["infra"] \
   --kustomization name=apps path=./crossplane-apps prune=true dependsOn=["secrets"]
 ```
+
+Above, the k8s configuration has 3 kustomizations:
+- infra: installs Crossplane and Azure Key Vault to Kubernetes; it also installs Crossplane providers
+- secrets: creates a secret that contains credentials to configure the Crossplane providers; the secret comes from a Key Vault
+- apps: a Kustomization where I can drop custom resourses to create Azure resources to play with like resource groups, storage accounts, AKS clusters, Kubernetes resources
+
+Note: you can remove --https-user and --https-key if the repo is public
+
 
 ## Setup Azure Provider
 
