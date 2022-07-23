@@ -1,7 +1,7 @@
 apiVersion: containerservice.azure.jet.crossplane.io/v1alpha2
 kind: KubernetesCluster
 metadata:
-  name: rg-cpclu
+  name: clu-cp
 spec:
   writeConnectionSecretToRef:
     name: example-kubeconfig
@@ -10,7 +10,7 @@ spec:
     location: "westeurope"
     resourceGroupNameRef:
       name: rg-crossplane
-    dnsPrefix: "rg-cpclu"
+    dnsPrefix: "clu-cp"
     defaultNodePool:
       - name: default
         nodeCount: 1
